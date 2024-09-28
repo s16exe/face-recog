@@ -9,7 +9,7 @@ def mark_attendance(name):
     """Marks attendance in an Excel or CSV file."""
     now = datetime.now()
     time_string = now.strftime('%H:%M:%S')
-    date_string = now.strftime('%Y-%m-%d')
+    date_string = now.strftime('%d-%m-%Y')
 
     # Load or create the attendance file
     try:
@@ -53,7 +53,7 @@ while True:
         name = label_map.get(label, "Unknown")
 
         # Mark attendance if confidence is above a certain threshold
-        if confidence < 100:
+        if confidence < 60:
             mark_attendance(name)
             cv2.putText(frame, f'{name} ({confidence:.2f})', (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
         else:
